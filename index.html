@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Calculator - Made by Nekoy</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="./style.css">
+    <script src="./script.js" defer></script>
+</head>
+
+<body>    
+    <div class="container">
+        <div class="calculator">
+            <div class="navbar">
+                <div class="navigation button">
+                    <svg class="icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip0_16_2737)">
+                        <rect width="8" height="2.5" rx="1.25" fill="#FAF9FB"/>
+                        <rect y="6.75" width="16" height="2.5" rx="1.25" fill="#FAF9FB"/>
+                        <rect y="13.5" width="12" height="2.5" rx="1.25" fill="#FAF9FB"/>
+                        </g>
+                        <defs>
+                        <clipPath id="clip0_16_2737">
+                        <rect width="16" height="16" fill="white"/>
+                        </clipPath>
+                        </defs>
+                    </svg> 
+
+                    Standard
+                </div>
+
+                <button class="history button">
+                    <svg class="icon stroke" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12.5 8.5C12.7761 8.5 13 8.27614 13 8C13 7.72386 12.7761 7.5 12.5 7.5H8.5V4.5C8.5 4.22386 8.27614 4 8 4C7.72386 4 7.5 4.22386 7.5 4.5V7.75C7.5 8.16421 7.83579 8.5 8.25 8.5H12.5ZM15.5 8C15.5 12.1421 12.1421 15.5 8 15.5C3.85786 15.5 0.5 12.1421 0.5 8C0.5 3.85786 3.85786 0.5 8 0.5C12.1421 0.5 15.5 3.85786 15.5 8Z" stroke="#FAF9FB" stroke-linecap="round"/>
+                    </svg>
+                </button>
+            </div>
+
+
+
+            <div class="display">
+                <input type="text" class="calculation" id="calculation" disabled />
+
+                <div class="results">
+                    <span class="equal"> = </span>
+
+                    <input type="text" class="result" id="result" disabled />
+                </div>
+            </div>
+
+
+
+            <div class="keys">
+                <div class="operators col-3 template-cols">
+                    <input type="button" value="AC"  class="button" onclick="clearScreen()">
+                    <input type="button" value="DEL" class="button" onclick="del()">
+                    <input type="button" value="%"   class="button" onclick="display('%')">
+                </div>
+
+                <div class="operators row-4 template-rows">
+                    <input type="button" value="÷" class="button" onclick="display('÷')">
+                    <input type="button" value="x" class="button" onclick="display('x')">
+                    <input type="button" value="+" class="button" onclick="display('+')">
+                    <input type="button" value="-" class="button" onclick="display('-')">
+                </div>
+
+                <input type="button" value="7" class="button" onclick="display('7')">
+                <input type="button" value="8" class="button" onclick="display('8')">
+                <input type="button" value="9" class="button" onclick="display('9')">
+                <input type="button" value="4" class="button" onclick="display('4')">
+                <input type="button" value="5" class="button" onclick="display('5')">
+                <input type="button" value="6" class="button" onclick="display('6')">
+                <input type="button" value="1" class="button" onclick="display('1')">
+                <input type="button" value="2" class="button" onclick="display('2')">
+                <input type="button" value="3" class="button" onclick="display('3')">
+                <input type="button" value="." class="button" onclick="display('.')">
+                <input type="button" value="0" class="button" onclick="display('0')">
+
+                <button type="button" value="=" class="button col-2 primary" onclick="calculate()"> = </button>
+            </div>
+        </div>
+   </div>
+
+   <div class="pop-up hide" id="popup_error">
+   </div>
+</body>
+</html>

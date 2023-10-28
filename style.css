@@ -1,0 +1,418 @@
+:root {
+    font-size: 10px;
+
+    --hue: 270;
+    --hue-rotate: 0;
+
+    --animation-default-time: 180ms;
+
+    /* Calculator */
+    --text-color:   hsl(var(--hue), 80%, 98%);
+    --bg-color:     hsl(var(--hue), 12%, 10%);
+    
+    --primary-dark: hsl(var(--hue), 80%, 32%);
+    --primary:      hsl(var(--hue), 80%, 48%);
+    
+    --default-8:    hsl(var(--hue), 12%, 8%);
+    --default-12:   hsl(var(--hue), 12%, 12%);
+    --default-16:   hsl(var(--hue), 12%, 16%);
+
+    --gap: 1.2rem;
+    --double-gap: calc(var(--gap) * 2);
+}
+
+*, *::after, *::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+    width: calc(var(--gap) / 3);
+    background-color: var(--default-12);
+}
+
+::-webkit-scrollbar-track {
+    background-color: inherit;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: var(--gap);
+    background-color: var(--primary-dark)
+}
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--primary);
+}
+
+body {
+    background-color: hsl(var(--hue), 12%, 6%);
+    color: var(--text-color);
+    font-family: "Poppins", "Montserrat", Roboco, sans-serif;
+    font-size: 1.6rem;
+    overflow-x: hidden;
+}
+
+button, input {
+    margin: 0;
+    border: 0;
+    font-size: inherit;
+    font-family: inherit;
+}
+
+.button {
+    display:         inline-flex;
+    align-items:     center;
+    justify-content: center;
+    gap:         var(--gap);
+    
+    border:        0;
+    padding:       var(--gap) var(--double-gap);
+    border-radius: var(--double-gap);
+    
+    font-weight: 500;
+
+    color:            var(--text-color);
+    background-color: var(--default-12);
+    
+    cursor:     pointer;
+    transition: background-color ease-in-out var(--animation-default-time),
+                box-shadow       ease-in-out var(--animation-default-time); 
+}
+
+.button:hover {
+    background-color: var(--default-16);
+}
+
+.button:focus-visible {
+    outline-color: hsl(var(--hue), 88%, 88%);
+    outline-width: calc(var(--gap) / 6);
+    outline-offset: calc(var(--gap) / 6);
+    outline-style: solid;
+    z-index: 0;
+}
+
+input:disabled {
+    cursor: default;
+}
+
+.icon {
+    display: block;
+    width:   1.6rem;
+    height:  1.6rem;
+
+    fill: inherit;
+}
+.icon.stroke {
+    fill: none;
+    stroke: inherit;
+}
+
+.container {
+    position: relative;
+    width:    100vw;
+    height:   100vh;
+}
+
+
+
+
+
+.calculator {
+    position: relative;
+    display:  flex;
+    flex-direction: column;
+
+    height: 100%;
+    width:  100%;
+
+    background-color: var(--bg-color);
+}
+
+.calculator .navbar {
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+    background-color: var(--default-12);
+}
+
+.calculator .navbar .navigation {
+    display: inherit;
+}
+
+.calculator .navbar .navigation.button {
+    position: relative;
+    font-weight: 500;
+    border-radius: 0 var(--double-gap) var(--double-gap) 0;
+}
+.calculator .navbar .navigation.button::before {
+    content:  '';
+    position: absolute;
+    bottom: calc(var(--double-gap) * -2);
+    left:   0;
+
+    width:  calc(var(--double-gap) * 2);
+    height: calc(var(--double-gap) * 2);
+    border-radius: 50%;
+    
+    background-color: transparent;
+    box-shadow: calc(var(--double-gap) * -1) calc(var(--double-gap) * -1) 0 0 var(--default-12);
+
+    transition: box-shadow ease-in-out var(--animation-default-time); 
+}
+.calculator .navbar .navigation.button:hover::before {
+    --default-12: var(--default-16);
+}
+
+.calculator .navbar .history {
+    display: inherit;
+    position: relative;
+}
+
+.calculator .navbar button.history {
+    border-radius: var(--double-gap) 0 0 var(--double-gap);
+}
+.calculator .navbar button.history::before {
+    content:  '';
+    position: absolute;
+    bottom: calc(var(--double-gap) * -2);
+    right:  0;
+
+    width:  calc(var(--double-gap) * 2);
+    height: calc(var(--double-gap) * 2);
+    border-radius: 50%;
+    
+    background-color: transparent;
+    box-shadow: var(--double-gap) calc(var(--double-gap) * -1) 0 0 var(--default-12);
+
+    transition: box-shadow ease-in-out var(--animation-default-time); 
+}
+.calculator .navbar button.history:hover::before {
+    --default-12: var(--default-16);
+}
+
+
+
+
+
+.calculator .display {
+    --_height: 3.6rem;
+    display:         flex;
+    flex-direction:  column;
+    justify-content: flex-end;
+
+    height: 40%;
+    max-height: calc(var(--_height) * 6);
+    padding: var(--double-gap);
+
+    color: inherit;
+}
+
+.calculator .display input {
+    width: 100%;
+
+    text-align: right;
+
+    color:            inherit;
+    background-color: transparent;
+    overflow-x: scroll;
+}
+
+.calculator .display > input {
+    color: var(--primary);
+
+    font-weight: 600;
+}
+
+.calculator .display .calculation {
+    --_size: .25rem;
+
+    border-right: var(--_size) solid;
+    margin-left:  var(--_size);
+    
+    font-size: 2rem;
+
+    animation: blink-caret 1s step-end infinite;
+}
+
+.calculator .display .results {
+    display:         none;
+    flex-direction:  row;
+    justify-content: space-between;
+    align-items:     flex-end;
+    gap:         var(--gap);
+
+    font-family: "Montserrat";
+    font-size:   3.2rem;
+    line-height: 3.2rem;
+    font-weight: 700;
+}
+
+.calculator .display .results.active {
+    display: inline-flex;
+}
+
+.calculator .display .results input {
+    font-weight: inherit;
+}
+
+
+
+
+
+.calculator .keys {
+    display:  grid;
+    position: relative;
+    gap: var(--gap);
+    grid-template-columns: repeat(4, 1fr);
+    height: 100%;
+    
+
+    padding: var(--double-gap);
+    
+    background-color: var(--default-12);
+    border-radius: 0 var(--double-gap) 0 0;
+}
+
+.calculator .keys::before {
+    content:  '';
+    position: absolute;
+    top: calc(var(--double-gap) * -2);
+    left: 0;
+
+    width:  calc(var(--double-gap) * 2);
+    height: calc(var(--double-gap) * 2);
+    border-radius: 50%;
+    
+    background-color: transparent;
+    box-shadow: calc(var(--double-gap) * -1) var(--double-gap) 0 var(--default-12);
+
+    transition: box-shadow ease-in-out var(--animation-default-time); 
+}
+
+
+
+
+
+.calculator .keys .button {
+    display: inherit;
+    padding: 0;
+}
+
+.calculator .keys .operators {
+    display: grid;
+    background-color: var(--bg-color);
+    border-radius: var(--double-gap);
+}
+
+.calculator .keys .operators .button {
+    background-color: inherit;
+}
+.calculator .keys .operators .button:hover {
+    background-color: var(--default-8);
+}
+
+.col-2 {
+    --template: 2;
+    grid-column: span var(--template);
+}
+
+.col-3 {
+    --template: 3;
+    grid-column: span var(--template);
+}
+
+.row-4 {
+    --template: 4;
+    grid-row: span var(--template);
+}
+
+.template-cols {
+    grid-template-columns: repeat(var(--template), 1fr);
+}
+.template-rows {
+    grid-template-rows: repeat(var(--template), 1fr);
+}
+
+.primary {
+    background-color: var(--primary-dark);  
+}
+.primary:hover {
+    background-color: var(--primary);
+    box-shadow: 0px .4rem 2.4rem hsla(var(--hue), 80%, 48%, .12);
+}
+
+
+
+
+
+
+
+.hide {
+    display: none!important;
+}
+
+.pop-up {
+    position:    absolute;
+    bottom:      var(--double-gap);
+    right:       var(--double-gap);
+    margin-left: var(--double-gap);
+
+    display:         flex;
+    flex-direction:  column;
+    justify-content: flex-end;
+    align-items:     flex-end;
+    gap:             var(--gap);
+
+    font-size: 1.2rem;
+}
+
+.pop-up .error {
+    display:        inherit;
+    flex-direction: column;
+    align-items:    flex-start;
+    gap:            calc(var(--gap) / 3);
+
+    font-weight: 400;
+
+    background-color: hsl(var(--hue), 32%, 32%);
+
+}
+.pop-up .error:hover {
+    background-color: hsl(var(--hue), 32%, 36%);
+    box-shadow:       0px .4rem 2.4rem hsla(var(--hue), 80%, 48%, .12);
+}
+
+.pop-up .error h3 {
+    --text-color: hsl(var(--hue), 100%, 96%);
+
+    font-size: 1.8rem;
+    
+    color: var(--text-color);
+    
+    transition: color ease-in-out var(--animation-default-time);
+}
+.pop-up .error:hover h3 {
+    --text-color: #fff;
+    text-shadow: 0 .4rem 12rem #ffffff12;
+}
+
+.pop-up .error, .pop-up .error:hover {
+    filter: hue-rotate(var(--hue-rotate));
+}
+
+
+
+
+
+/* Animations */
+
+@keyframes blink-caret {
+    from, to { 
+        border-color: transparent;
+    }
+
+    50% {
+        border-color: inherit;
+    }
+}
